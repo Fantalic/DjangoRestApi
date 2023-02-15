@@ -41,3 +41,22 @@ A ViewSet class is simply a type of class-based View, that does not provide any 
 The method handlers for a ViewSet are only bound to the corresponding actions at the point of finalizing the view, using the .as_view() method.
 
 Typically, rather than explicitly registering the views in a viewset in the urlconf, you'll register the viewset with a router class, that automatically determines the urlconf for you.
+
+
+# create models
+
+- define model class 
+- define serializer class
+- $ python manage.py makemigrations
+- $ python manage.py migrate
+
+- create datasets
+- $ python manage.py shell
+- example: 
+from .models import PvYield
+pv_yield = PvYield(state='California', plz='90210', yield=5.6)
+pv_yield.save()
+
+# Test call 
+
+curl "http://localhost:8000/api/pv_yield?state=California&capacity=10"

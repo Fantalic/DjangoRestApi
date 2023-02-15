@@ -1,6 +1,5 @@
-from django.urls import path
-from .views import PvYieldsView
+from django.urls import path, include
 
 urlpatterns = [
-    path('example/', PvYieldsView.as_view(), name='example'),
+    path(r'', include('simple_REST_API.urls')),
 ]

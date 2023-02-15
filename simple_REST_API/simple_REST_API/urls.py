@@ -14,11 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf.urls import include
-#from django.contrib import admin
-from django.urls import path
+
+from rest_framework.routers import DefaultRouter
+from django.urls import path, include
+from pvYields.views import PvYieldsViewSet
+
+router = DefaultRouter()
+router.register(r'api', PvYieldsViewSet, basename='api')
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('api/', include('pvYields.urls')),
+    path('', include(router.urls)),
+    path('api/pv_yield', PvYieldsViewSet.as_view({'get': 'retrieve'})),
 ]
